@@ -20,7 +20,18 @@ public class RadioTest {
     @Test
     public void shouldSetWrongStation() {
         Radio rad = new Radio();
-        rad.setStation(15);
+        rad.setStation(11);
+
+        int expected = 0;
+        int actual = rad.getStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSetWrongStation2() {
+        Radio rad = new Radio();
+        rad.setStation(-1);
 
         int expected = 0;
         int actual = rad.getStation();
