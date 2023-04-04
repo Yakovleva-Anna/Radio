@@ -6,6 +6,85 @@ import org.junit.jupiter.api.Assertions;
 
 public class RadioTest {
 
+
+    @Test
+    public void shouldSetStationFreeRadio() {
+        Radio rad = new Radio(20);
+        rad.setStation(15);
+        int expected = 15;
+        int actual = rad.getStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSetWrongStationFreeRadio() {
+        Radio rad = new Radio(10);
+        rad.setStation(10);
+        int expected = 0;
+        int actual = rad.getStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSetWrongStationFreeRadio2() {
+        Radio rad = new Radio(15);
+        rad.setStation(-1);
+        int expected = 0;
+        int actual = rad.getStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSetNextStationFreeRadio() {
+        Radio rad = new Radio(10);
+        rad.setStation(0);
+        rad.nextStation();
+
+        int expected = 1;
+        int actual = rad.getStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSetPrevStationFreeRadio() {
+        Radio rad = new Radio(10);
+        rad.setStation(9);
+        rad.prevStation();
+
+        int expected = 8;
+        int actual = rad.getStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSetNextMaxStationFreeRadio() {
+        Radio rad = new Radio(20);
+        rad.setStation(19);
+        rad.nextStation();
+
+        int expected = 0;
+        int actual = rad.getStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSetPrevMinStationFreeRadio() {
+        Radio rad = new Radio(20);
+        rad.setStation(0);
+        rad.prevStation();
+
+        int expected = 19;
+        int actual = rad.getStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
     @Test
     public void shouldSetStation() {
         Radio rad = new Radio();
@@ -20,7 +99,7 @@ public class RadioTest {
     @Test
     public void shouldSetWrongStation() {
         Radio rad = new Radio();
-        rad.setStation(11);
+        rad.setStation(10);
 
         int expected = 0;
         int actual = rad.getStation();
