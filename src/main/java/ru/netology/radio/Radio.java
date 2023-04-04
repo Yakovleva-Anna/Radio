@@ -2,37 +2,51 @@ package ru.netology.radio;
 
 public class Radio {
     private int station;
+    private int minStation = 0;
+    private int maxStation = 9;
+    private int stationsCount = 10;
     private int volume;
+    private int minVolume = 0;
+    private int maxVolume = 100;
+
+    public Radio() {
+
+    }
+
+    public Radio(int stationsCount) {
+        this.stationsCount = stationsCount;
+        this.maxStation = stationsCount - 1;
+    }
 
     public int getStation() {
 
         return station;
     }
 
-    public void setStation(int newStation) {
-        if (newStation < 0) {
+    public void setStation(int station) {
+        if (station < minStation) {
             return;
         }
-        if (newStation > 9) {
+        if (station > maxStation) {
             return;
         }
-        station = newStation;
+        this.station = station;
     }
 
 
     public void nextStation() {
-        if (station < 9) {
+        if (station < maxStation) {
             station++;
         } else {
-            station = 0;
+            station = minStation;
         }
     }
 
     public void prevStation() {
-        if (station > 0) {
+        if (station > minStation) {
             station--;
         } else {
-            station = 9;
+            station = maxStation;
         }
     }
 
@@ -41,24 +55,25 @@ public class Radio {
         return volume;
     }
 
-    public void setVolume(int newVolume) {
-        if (newVolume < 0) {
+    public void setVolume(int volume) {
+        if (volume < minVolume) {
             return;
         }
-        if (newVolume > 100) {
-            newVolume = 100;
+        if (volume > maxVolume) {
+            volume = maxVolume;
         }
-        volume = newVolume;
+        this.volume = volume;
     }
 
     public void increaseVolume() {
-        if (volume < 100) {
+        if (volume < maxVolume) {
             volume++;
         }
+        this.volume = volume;
     }
 
     public void decreaseVolume() {
-        if (volume > 0) {
+        if (volume > minVolume) {
             volume--;
         }
     }
